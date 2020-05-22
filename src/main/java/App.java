@@ -1,3 +1,5 @@
+import com.techno.chess.ChessBoard;
+
 import java.util.Scanner;
 
 /*
@@ -12,6 +14,8 @@ public class App {
         Scanner sc= new Scanner(System.in);
         System.out.print("Input : ");
         String input = sc.nextLine();
-        System.out.println("Thanks for entering " + input + " implementation is in progress");
+        ChessBoard cb = new ChessBoard();
+        if (cb.isValidInput(input))
+            System.out.println("Output : " + cb.getAvailableSlots());
     }
 }
