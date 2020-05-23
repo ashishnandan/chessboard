@@ -1,5 +1,7 @@
 package com.techno.chess;
 
+import com.techno.chess.pieces.PieceType;
+
 import java.util.Arrays;
 
 public class ChessBoard {
