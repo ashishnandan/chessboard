@@ -1,29 +1,39 @@
 package com.techno.chess;
 
+import com.techno.chess.exception.InvalidInputException;
+import com.techno.chess.pieces.Piece;
 import com.techno.chess.pieces.PieceType;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class ChessBoard {
 
-    private final Character[] xAxis = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-    private final int[] yAxis = {1, 2, 3, 4, 5, 6, 7, 8};
+    private String input;
 
-    public boolean isValidInput(String input) {
-        String[] commands = input.trim().split(" ");
-
-        if (commands.length != 2 || !PieceType.isValid(commands[0]) || commands[1].length() != 2)
-            return false;
-
-        boolean xAxisPositionInRange =
-                Arrays.stream(xAxis).anyMatch(character -> character.equals(Character.toUpperCase(commands[1].charAt(0))));
-        boolean yAxisPositionInRange =
-                Arrays.stream(yAxis).anyMatch(num -> Integer.parseInt(String.valueOf(commands[1].charAt(1))) == num);
-        return xAxisPositionInRange && yAxisPositionInRange;
+    public ChessBoard(String input){
+        this.input = input;
     }
 
 
-    public String getAvailableSlots() {
-        return "work in progress";
+    public String getAvailableMoves() throws
+            ClassNotFoundException, IllegalAccessException, InstantiationException, InvalidInputException {
+        checkInputSize();
+        Piece piece = (Piece) PieceType.getInstanceOf(getPieceAndCommand()[0]).newInstance();
+        List<Cell> availableSlots = piece.getAvailableSlots(new Cell(getPieceAndCommand()[1]));
+        StringBuffer output = new StringBuffer();
+        for (Cell cell: availableSlots)
+            output.append(cell.getLocation() + ", ");
+        return output.substring(0, output.length() - 2);
+    }
+
+    private void checkInputSize() throws InvalidInputException {
+        String[] commands = getPieceAndCommand();
+
+        if (commands.length != 2 || commands[1].length() != 2)
+            throw new InvalidInputException(input + " is not a valid move");
+    }
+
+    private String[] getPieceAndCommand() {
+        return input.trim().split(" ");
     }
 }

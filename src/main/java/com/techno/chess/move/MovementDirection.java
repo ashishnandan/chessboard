@@ -1,0 +1,12 @@
+package com.techno.chess.move;
+
+public enum MovementDirection {
+    VERTICAL_TOP,
+    DIAGONAL_TOP_RIGHT,
+    HORIZONTAL_RIGHT,
+    DIAGONAL_BOTTOM_RIGHT,
+    VERTICAL_BOTTOM,
+    DIAGONAL_BOTTOM_LEFT,
+    HORIZONTAL_LEFT,
+    DIAGONAL_TOP_LEFT
+}

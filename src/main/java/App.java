@@ -1,4 +1,5 @@
 import com.techno.chess.ChessBoard;
+import com.techno.chess.exception.InvalidInputException;
 
 import java.util.Scanner;
 
@@ -14,8 +15,13 @@ public class App {
         Scanner sc= new Scanner(System.in);
         System.out.print("Input : ");
         String input = sc.nextLine();
-        ChessBoard cb = new ChessBoard();
-        if (cb.isValidInput(input))
-            System.out.println("Output : " + cb.getAvailableSlots());
+        String out = null;
+        try {
+            out = new ChessBoard(input).getAvailableMoves();
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvalidInputException e) {
+            out = e.getMessage();
+        }
+
+        System.out.println("Output : " + out);
     }
 }
