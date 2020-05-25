@@ -20,7 +20,7 @@ public class King implements Piece {
     public List<Cell> getAvailableSlots(Cell start) {
         List<Cell> availableMoves = new ArrayList<>();
         for (MovementDirection movementDirection : movementDirectionList) {
-            Cell movedSlot = start.getMovedSlot(movementDirection, 1);
+            Cell movedSlot = movementDirection.move(start);
             if (movedSlot.getLocation() != null)
                 availableMoves.add(movedSlot);
         }

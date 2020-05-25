@@ -16,8 +16,8 @@ public class Cell {
     private final int[] yAxisRange = {1, 2, 3, 4, 5, 6, 7, 8};
 
     public Cell(Character xAxis, int yAxis) {
-            this.xAxis = xAxis;
-            this.yAxis = yAxis;
+        this.xAxis = xAxis;
+        this.yAxis = yAxis;
         if (checkInputRange()) {
             location = xAxis.toString() + yAxis;
         }
@@ -36,44 +36,48 @@ public class Cell {
         return location;
     }
 
-    public Cell getMovedSlot(MovementDirection movementDirection, int step) {
-        Cell newCell = null;
-        char x;
-        int y;
-        if (movementDirection == MovementDirection.VERTICAL_TOP) {
-            x = xAxis;
-            y = yAxis + step;
-            newCell = new Cell(x, y);
-        } else if (movementDirection == MovementDirection.DIAGONAL_TOP_RIGHT) {
-            x = (char) (xAxis + 1);
-            y = yAxis + step;
-            newCell = new Cell(x, y);
-        } else if (movementDirection == MovementDirection.HORIZONTAL_RIGHT) {
-            x = (char) (xAxis + 1);
-            y = yAxis;
-            newCell = new Cell(x, y);
-        } else if (movementDirection == MovementDirection.DIAGONAL_BOTTOM_RIGHT) {
-            x = (char) (xAxis + 1);
-            y = yAxis - step;
-            newCell = new Cell(x, y);
-        } else if (movementDirection == MovementDirection.VERTICAL_BOTTOM) {
-            x = xAxis;
-            y = yAxis - step;
-            newCell = new Cell(x, y);
-        } else if (movementDirection == MovementDirection.DIAGONAL_BOTTOM_LEFT) {
-            x = (char) (xAxis - 1);
-            y = yAxis - step;
-            newCell = new Cell(x, y);
-        } else if (movementDirection == MovementDirection.HORIZONTAL_LEFT) {
-            x = (char) (xAxis - 1);
-            y = yAxis;
-            newCell = new Cell(x, y);
-        } else if (movementDirection == MovementDirection.DIAGONAL_TOP_LEFT) {
-            x = (char) (xAxis - 1);
-            y = yAxis + step;
-            newCell = new Cell(x, y);
-        }
-        return newCell;
+    public char getxAxis() {
+        return xAxis;
+    }
+
+    public int getyAxis() {
+        return yAxis;
+    }
+
+    public Cell moveUp() {
+        int y = yAxis + 1;
+        return new Cell(xAxis, y);
+    }
+
+    public Cell moveUpDiagonalRight() {
+        char x = (char) (xAxis + 1);
+        int y = yAxis + 1;
+        return new Cell(x, y);
+    }
+
+    public Cell moveRight() {
+        char x = (char) (xAxis + 1);
+        return new Cell(x, yAxis);
+    }
+
+    public Cell moveDownDiagonalRight() {
+        return new Cell((char) (xAxis + 1), yAxis - 1);
+    }
+
+    public Cell moveDown() {
+        return new Cell(xAxis, yAxis - 1);
+    }
+
+    public Cell moveDownDiagonalLeft() {
+        return new Cell((char) (xAxis - 1), yAxis - 1);
+    }
+
+    public Cell moveUpDiagonalLeft() {
+        return new Cell((char) (xAxis - 1), yAxis + 1);
+    }
+
+    public Cell moveLeft() {
+        return new Cell((char) (xAxis - 1), yAxis);
     }
 
     public boolean checkInputRange() {

@@ -10,27 +10,50 @@ public class CellTest {
 
 
     @Test
-    public void getMovedSlot() throws InvalidInputException {
-        Cell start = new Cell("D6");
-        assertEquals("D7", start.getMovedSlot(MovementDirection.VERTICAL_TOP, 1).getLocation());
-        assertEquals("E7", start.getMovedSlot(MovementDirection.DIAGONAL_TOP_RIGHT, 1).getLocation());
-        assertEquals("E6", start.getMovedSlot(MovementDirection.HORIZONTAL_RIGHT, 1).getLocation());
-        assertEquals("E5", start.getMovedSlot(MovementDirection.DIAGONAL_BOTTOM_RIGHT, 1).getLocation());
-        assertEquals("D5", start.getMovedSlot(MovementDirection.VERTICAL_BOTTOM, 1).getLocation());
-        assertEquals("C5", start.getMovedSlot(MovementDirection.DIAGONAL_BOTTOM_LEFT, 1).getLocation());
-        assertEquals("C6", start.getMovedSlot(MovementDirection.HORIZONTAL_LEFT, 1).getLocation());
-        assertEquals("C7", start.getMovedSlot(MovementDirection.DIAGONAL_TOP_LEFT, 1).getLocation());
+    public void moveUp() throws InvalidInputException {
+        assertEquals("D6", new Cell("D5").moveUp().getLocation());
+        assertNull(new Cell("D8").moveUp().getLocation());
+    }
 
-        Cell start_A1 = new Cell("A1");
-        assertEquals("A2", start_A1.getMovedSlot(MovementDirection.VERTICAL_TOP, 1).getLocation());
-        assertNull(start_A1.getMovedSlot(MovementDirection.HORIZONTAL_LEFT, 1).getLocation());
-        assertNull(start_A1.getMovedSlot(MovementDirection.VERTICAL_BOTTOM, 1).getLocation());
-        assertNull(start_A1.getMovedSlot(MovementDirection.DIAGONAL_BOTTOM_LEFT, 1).getLocation());
+    @Test
+    public void moveUpDiagonalRight() throws InvalidInputException {
+        assertEquals("E6", new Cell("D5").moveUpDiagonalRight().getLocation());
+        assertNull(new Cell("D8").moveUpDiagonalRight().getLocation());
+    }
 
-        Cell start_A8 = new Cell("A8");
-        assertEquals("A7", start_A8.getMovedSlot(MovementDirection.VERTICAL_BOTTOM, 1).getLocation());
-        assertNull(start_A8.getMovedSlot(MovementDirection.HORIZONTAL_LEFT, 1).getLocation());
-        assertNull(start_A8.getMovedSlot(MovementDirection.VERTICAL_TOP, 1).getLocation());
-        assertNull(start_A8.getMovedSlot(MovementDirection.DIAGONAL_BOTTOM_LEFT, 1).getLocation());
+    @Test
+    public void moveRight() throws InvalidInputException {
+        assertEquals("E5", new Cell("D5").moveRight().getLocation());
+        assertNull(new Cell("H8").moveRight().getLocation());
+    }
+
+    @Test
+    public void moveDownDiagonalRight() throws InvalidInputException {
+        assertEquals("E4", new Cell("D5").moveDownDiagonalRight().getLocation());
+        assertNull(new Cell("H1").moveDownDiagonalRight().getLocation());
+    }
+
+    @Test
+    public void moveDown() throws InvalidInputException {
+        assertEquals("D4", new Cell("D5").moveDown().getLocation());
+        assertNull(new Cell("H1").moveDown().getLocation());
+    }
+
+    @Test
+    public void moveDownDiagonalLeft() throws InvalidInputException {
+        assertEquals("C4", new Cell("D5").moveDownDiagonalLeft().getLocation());
+        assertNull(new Cell("H1").moveDownDiagonalLeft().getLocation());
+    }
+
+    @Test
+    public void moveUpDiagonalLeft() throws InvalidInputException {
+        assertEquals("C6", new Cell("D5").moveUpDiagonalLeft().getLocation());
+        assertNull(new Cell("H8").moveUpDiagonalLeft().getLocation());
+    }
+
+    @Test
+    public void moveLeft() throws InvalidInputException {
+        assertEquals("C5", new Cell("D5").moveLeft().getLocation());
+        assertNull(new Cell("A1").moveLeft().getLocation());
     }
 }
