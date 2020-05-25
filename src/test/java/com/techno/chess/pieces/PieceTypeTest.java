@@ -3,6 +3,8 @@ package com.techno.chess.pieces;
 import com.techno.chess.pieces.PieceType;
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static org.junit.Assert.*;
 
 public class PieceTypeTest {
@@ -32,21 +34,24 @@ public class PieceTypeTest {
     }
 
     @Test
-    public void getInstanceOf_validPieceNames() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        assertTrue(PieceType.getInstanceOf("queen").newInstance() instanceof Queen);
-        assertTrue(PieceType.getInstanceOf("King").newInstance() instanceof King);
-        assertTrue(PieceType.getInstanceOf("PAWN").newInstance() instanceof Pawn);
-        assertTrue(PieceType.getInstanceOf("ROok").newInstance() instanceof Rook);
-        assertTrue(PieceType.getInstanceOf("BISHOP").newInstance() instanceof Bishop);
-        assertTrue(PieceType.getInstanceOf("Horse").newInstance() instanceof Horse);
+    public void getInstanceOf_validPieceNames() throws ClassNotFoundException, IllegalAccessException, InstantiationException,
+            NoSuchMethodException, InvocationTargetException {
+        assertTrue(PieceType.getInstanceOf("queen").getConstructor(String.class).newInstance(new Object[]{"H6"}) instanceof Queen);
+        assertTrue(PieceType.getInstanceOf("King").getConstructor(String.class).newInstance(new Object[]{"D5"}) instanceof King);
+        assertTrue(PieceType.getInstanceOf("PAWN").getConstructor(String.class).newInstance(new Object[]{"F8"}) instanceof Pawn);
+        assertTrue(PieceType.getInstanceOf("ROok").getConstructor(String.class).newInstance(new Object[]{"A1"}) instanceof Rook);
+        assertTrue(PieceType.getInstanceOf("BISHOP").getConstructor(String.class).newInstance(new Object[]{"B2"}) instanceof Bishop);
+        assertTrue(PieceType.getInstanceOf("Horse").getConstructor(String.class).newInstance(new Object[]{"C4"}) instanceof Horse);
     }
 
     @Test
     public void getInstanceOf_invalidPieceNames() {
         try {
-            assertTrue(PieceType.getInstanceOf("bhwcwhjds").newInstance() instanceof Queen);
+            assertTrue(PieceType.getInstanceOf("bhwcwhjds").getConstructor(String.class).newInstance(new Object[]{"random"})
+                    instanceof Queen);
             fail("Exception expected");
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | NoSuchMethodException | InvocationTargetException e) {
             assertEquals("PieceType bhwcwhjds not valid", e.getMessage());
         }
     }

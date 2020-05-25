@@ -12,13 +12,14 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Scanner sc= new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Input : ");
         String input = sc.nextLine();
         String out = null;
         try {
             out = new ChessBoard(input).getAvailableMoves();
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvalidInputException e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
+                | InvalidInputException | NoSuchMethodException e) {
             out = e.getMessage();
         }
 

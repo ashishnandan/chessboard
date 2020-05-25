@@ -4,24 +4,33 @@ import com.techno.chess.exception.InvalidInputException;
 import com.techno.chess.pieces.Piece;
 import com.techno.chess.pieces.PieceType;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class ChessBoard {
 
     private String input;
 
-    public ChessBoard(String input){
+    public ChessBoard(String input) {
         this.input = input;
     }
 
 
     public String getAvailableMoves() throws
-            ClassNotFoundException, IllegalAccessException, InstantiationException, InvalidInputException {
+            ClassNotFoundException, IllegalAccessException, InstantiationException, InvalidInputException, NoSuchMethodException {
         checkInputSize();
-        Piece piece = (Piece) PieceType.getInstanceOf(getPieceAndCommand()[0]).newInstance();
-        List<Cell> availableSlots = piece.getAvailableSlots(new Cell(getPieceAndCommand()[1]));
+        String ctorArg = getPieceAndCommand()[1];
+        Piece piece = null;
+        try {
+            piece = (Piece) PieceType.getInstanceOf(getPieceAndCommand()[0])
+                    .getConstructor(String.class)
+                    .newInstance(new Object[]{ctorArg});
+        } catch (InvocationTargetException e) {
+            throw new InvalidInputException(e.getMessage());
+        }
+        List<Cell> availableSlots = piece.getAvailableSlots();
         StringBuffer output = new StringBuffer();
-        for (Cell cell: availableSlots)
+        for (Cell cell : availableSlots)
             output.append(cell.getLocation() + ", ");
         return output.substring(0, output.length() - 2);
     }

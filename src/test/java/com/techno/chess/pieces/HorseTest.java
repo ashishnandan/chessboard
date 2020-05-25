@@ -13,7 +13,7 @@ public class HorseTest {
 
     @Test
     public void getAvailableSlots() throws InvalidInputException {
-        List<Cell> availableSlots_F3 = new Horse().getAvailableSlots(new Cell("F3"));
+        List<Cell> availableSlots_F3 = new Horse("F3").getAvailableSlots();
         List<Cell> output = new ArrayList<>();
 
         output.add(new Cell("G5"));
@@ -27,7 +27,7 @@ public class HorseTest {
 
         assertEquals(output, availableSlots_F3);
 
-        List<Cell> availableSlots_H2 = new Horse().getAvailableSlots(new Cell("H2"));
+        List<Cell> availableSlots_H2 = new Horse("H2").getAvailableSlots();
         output = new ArrayList<>();
 
         output.add(new Cell("F1"));

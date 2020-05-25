@@ -36,14 +36,6 @@ public class Cell {
         return location;
     }
 
-    public char getxAxis() {
-        return xAxis;
-    }
-
-    public int getyAxis() {
-        return yAxis;
-    }
-
     public Cell moveUp() {
         int y = yAxis + 1;
         return new Cell(xAxis, y);

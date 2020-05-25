@@ -13,7 +13,7 @@ public class QueenTest {
 
     @Test
     public void getAvailableSlots() throws InvalidInputException {
-        List<Cell> availableSlots_D5 = new Queen().getAvailableSlots(new Cell("D5"));
+        List<Cell> availableSlots_D5 = new Queen("D5").getAvailableSlots();
         assertEquals(27, availableSlots_D5.size());
         List<Cell> output = new ArrayList<>();
         output.add(new Cell("D6"));
@@ -46,7 +46,7 @@ public class QueenTest {
 
         assertEquals(output, availableSlots_D5);
 
-        List<Cell> availableSlots_A1 = new Queen().getAvailableSlots(new Cell("A1"));
+        List<Cell> availableSlots_A1 = new Queen("A1").getAvailableSlots();
         assertEquals(21, availableSlots_A1.size());
         output = new ArrayList<>();
         output.add(new Cell("A2"));
@@ -73,7 +73,7 @@ public class QueenTest {
 
         assertEquals(output, availableSlots_A1);
 
-        List<Cell> availableSlots_H4 = new Queen().getAvailableSlots(new Cell("H4"));
+        List<Cell> availableSlots_H4 = new Queen("H4").getAvailableSlots();
         assertEquals(21, availableSlots_H4.size());
         output = new ArrayList<>();
         output.add(new Cell("H5"));
@@ -100,7 +100,7 @@ public class QueenTest {
 
         assertEquals(output, availableSlots_H4);
 
-        List<Cell> availableSlots_A5 = new Queen().getAvailableSlots(new Cell("A5"));
+        List<Cell> availableSlots_A5 = new Queen("A5").getAvailableSlots();
         assertEquals(21, availableSlots_A5.size());
         output = new ArrayList<>();
         output.add(new Cell("A6"));

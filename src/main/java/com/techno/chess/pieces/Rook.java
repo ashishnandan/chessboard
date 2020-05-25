@@ -1,6 +1,7 @@
 package com.techno.chess.pieces;
 
 import com.techno.chess.Cell;
+import com.techno.chess.exception.InvalidInputException;
 import com.techno.chess.move.MovementDirection;
 import com.techno.chess.pieces.Piece;
 
@@ -11,7 +12,9 @@ public class Rook implements Piece {
 
     private final List<MovementDirection> movementDirectionList = new ArrayList<>();
 
-    public Rook() {
+    private Cell start;
+    public Rook(String location) throws InvalidInputException {
+        this.start = new Cell(location);
         movementDirectionList.add(MovementDirection.VERTICAL_TOP);
         movementDirectionList.add(MovementDirection.HORIZONTAL_RIGHT);
         movementDirectionList.add(MovementDirection.VERTICAL_BOTTOM);
@@ -19,7 +22,7 @@ public class Rook implements Piece {
     }
 
     @Override
-    public List<Cell> getAvailableSlots(Cell start) {
+    public List<Cell> getAvailableSlots() {
         List<Cell> availableMoves = new ArrayList<>();
         for (MovementDirection direction : movementDirectionList) {
             Cell newCell = start;

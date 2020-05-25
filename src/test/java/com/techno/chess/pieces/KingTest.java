@@ -14,7 +14,7 @@ public class KingTest {
 
     @Test
     public void getAvailableSlots() throws InvalidInputException {
-        List<Cell> availableSlots = new King().getAvailableSlots(new Cell("D5"));
+        List<Cell> availableSlots = new King("D5").getAvailableSlots();
         assertEquals(8, availableSlots.size());
         List<Cell> output = new ArrayList<>();
         output.add(new Cell("D6"));
@@ -28,7 +28,7 @@ public class KingTest {
 
         assertEquals(output, availableSlots);
 
-        List<Cell> availableSlots_1 = new King().getAvailableSlots(new Cell("H1"));
+        List<Cell> availableSlots_1 = new King("H1").getAvailableSlots();
         assertEquals(3, availableSlots_1.size());
         List<Cell> output_1 = new ArrayList<>();
         output_1.add(new Cell("H2"));
@@ -37,7 +37,7 @@ public class KingTest {
 
         assertEquals(output_1, availableSlots_1);
 
-        List<Cell> availableSlots_2 = new King().getAvailableSlots(new Cell("H8"));
+        List<Cell> availableSlots_2 = new King("H8").getAvailableSlots();
         assertEquals(3, availableSlots_2.size());
         List<Cell> output_2 = new ArrayList<>();
         output_2.add(new Cell("H7"));
@@ -46,7 +46,7 @@ public class KingTest {
 
         assertEquals(output_2, availableSlots_2);
 
-        List<Cell> availableSlots_3 = new King().getAvailableSlots(new Cell("A5"));
+        List<Cell> availableSlots_3 = new King("A5").getAvailableSlots();
         assertEquals(5, availableSlots_3.size());
         List<Cell> output_3 = new ArrayList<>();
         output_3.add(new Cell("A6"));

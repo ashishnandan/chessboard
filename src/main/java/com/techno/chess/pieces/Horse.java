@@ -1,6 +1,7 @@
 package com.techno.chess.pieces;
 
 import com.techno.chess.Cell;
+import com.techno.chess.exception.InvalidInputException;
 import com.techno.chess.move.MovementDirection;
 
 import java.util.ArrayList;
@@ -8,8 +9,14 @@ import java.util.List;
 
 public class Horse implements Piece {
 
+    private Cell start;
+
+    public Horse(String location) throws InvalidInputException {
+        this.start = new Cell(location);
+    }
+
     @Override
-    public List<Cell> getAvailableSlots(Cell start) {
+    public List<Cell> getAvailableSlots() {
         List<List<MovementDirection>> movementDirectionList = new ArrayList<>();
 
         List<MovementDirection> topRightList = new ArrayList<>();
@@ -73,4 +80,5 @@ public class Horse implements Piece {
         }
         return availableMoves;
     }
+
 }

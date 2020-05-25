@@ -13,7 +13,7 @@ public class RookTest {
 
     @Test
     public void getAvailableSlots() throws InvalidInputException {
-        List<Cell> availableSlots_D5 = new Rook().getAvailableSlots(new Cell("D5"));
+        List<Cell> availableSlots_D5 = new Rook("D5").getAvailableSlots();
         assertEquals(14, availableSlots_D5.size());
         List<Cell> output = new ArrayList<>();
         output.add(new Cell("D6"));
@@ -33,7 +33,7 @@ public class RookTest {
 
         assertEquals(output, availableSlots_D5);
 
-        List<Cell> availableSlots_A8 = new Rook().getAvailableSlots(new Cell("A8"));
+        List<Cell> availableSlots_A8 = new Rook("A8").getAvailableSlots();
         assertEquals(14, availableSlots_A8.size());
         output = new ArrayList<>();
         output.add(new Cell("B8"));
@@ -53,7 +53,7 @@ public class RookTest {
 
         assertEquals(output, availableSlots_A8);
 
-        List<Cell> availableSlots_A4 = new Rook().getAvailableSlots(new Cell("A4"));
+        List<Cell> availableSlots_A4 = new Rook("A4").getAvailableSlots();
         assertEquals(14, availableSlots_A4.size());
         output = new ArrayList<>();
         output.add(new Cell("A5"));

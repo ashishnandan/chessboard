@@ -13,7 +13,7 @@ public class BishopTest {
 
     @Test
     public void getAvailableSlots() throws InvalidInputException {
-        List<Cell> availableSlots_D5 = new Bishop().getAvailableSlots(new Cell("D5"));
+        List<Cell> availableSlots_D5 = new Bishop("D5").getAvailableSlots();
         assertEquals(13, availableSlots_D5.size());
         List<Cell> output = new ArrayList<>();
         output.add(new Cell("E6"));
@@ -32,7 +32,7 @@ public class BishopTest {
 
         assertEquals(output, availableSlots_D5);
 
-        List<Cell> availableSlots_A1 = new Bishop().getAvailableSlots(new Cell("A1"));
+        List<Cell> availableSlots_A1 = new Bishop("A1").getAvailableSlots();
         assertEquals(7, availableSlots_A1.size());
         output = new ArrayList<>();
         output.add(new Cell("B2"));
