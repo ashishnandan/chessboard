@@ -28,8 +28,9 @@ public class Pawn implements Piece {
         List<Cell> availableMoves = new ArrayList<>();
         for (MovementDirection movementDirection : movementDirectionList) {
             Cell movedSlot = movementDirection.move(start);
-            if (movedSlot.getLocation() != null)
+            if (movedSlot.getLocation() != null) {
                 availableMoves.add(movedSlot);
+            }
         }
         return availableMoves;
     }

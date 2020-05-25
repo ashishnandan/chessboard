@@ -21,9 +21,6 @@ public class Queen implements Piece {
         Collections.addAll(movementDirectionList, values());
     }
 
-    public Queen() {
-    }
-
     @Override
     public List<Cell> getAvailableSlots() {
         List<Cell> availableMoves = new ArrayList<>();
@@ -31,8 +28,9 @@ public class Queen implements Piece {
             Cell newCell = start;
             while (newCell.getLocation() != null) {
                 newCell = direction.move(newCell);
-                if (newCell.getLocation() != null)
+                if (newCell.getLocation() != null) {
                     availableMoves.add(newCell);
+                }
             }
         }
         return availableMoves;

@@ -75,8 +75,9 @@ public class Horse implements Piece {
             for (MovementDirection direction : list) {
                 newCell = direction.move(newCell);
             }
-            if (newCell.getLocation() != null)
+            if (newCell.getLocation() != null) {
                 availableMoves.add(newCell);
+            }
         }
         return availableMoves;
     }

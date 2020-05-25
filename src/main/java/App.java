@@ -15,10 +15,10 @@ public class App {
         Scanner sc = new Scanner(System.in);
         System.out.print("Input : ");
         String input = sc.nextLine();
-        String out = null;
+        String out;
         try {
             out = new ChessBoard(input).getAvailableMoves();
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
+        } catch (IllegalAccessException | InstantiationException
                 | InvalidInputException | NoSuchMethodException e) {
             out = e.getMessage();
         }

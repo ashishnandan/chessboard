@@ -28,8 +28,9 @@ public class Bishop implements Piece {
             Cell newCell = start;
             while (newCell.getLocation() != null) {
                 newCell = direction.move(newCell);
-                if (newCell.getLocation() != null)
+                if (newCell.getLocation() != null) {
                     availableMoves.add(newCell);
+                }
             }
         }
         return availableMoves;

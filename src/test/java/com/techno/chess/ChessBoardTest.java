@@ -27,8 +27,9 @@ public class ChessBoardTest {
         inputOutputMap.put("Pawn A4", "A5, B5");
         inputOutputMap.put("King H4", "H5, H3, G3, G4, G5");
 
-        for (String input: inputOutputMap.keySet())
+        for (String input: inputOutputMap.keySet()) {
             assertEquals(inputOutputMap.get(input), new ChessBoard(input).getAvailableMoves());
+        }
     }
 
     @Test(expected = InvalidInputException.class)
@@ -38,14 +39,14 @@ public class ChessBoardTest {
         new ChessBoard("Kin F99").getAvailableMoves();
     }
 
-    @Test(expected = ClassNotFoundException.class)
+    @Test(expected = InvalidInputException.class)
     public void getAvailableSlots_King_InvalidPiece() throws
             IllegalAccessException, InstantiationException, ClassNotFoundException, InvalidInputException, NoSuchMethodException {
 
         new ChessBoard("Kin F5").getAvailableMoves();
     }
 
-    @Test(expected = ClassNotFoundException.class)
+    @Test(expected = InvalidInputException.class)
     public void getAvailableSlots_Queen_InvalidPiece() throws
             IllegalAccessException, InstantiationException, ClassNotFoundException, InvalidInputException, NoSuchMethodException {
 

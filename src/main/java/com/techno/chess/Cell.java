@@ -27,8 +27,9 @@ public class Cell {
         this.location = s;
         xAxis = location.charAt(0);
         yAxis = Integer.parseInt(String.valueOf(location.charAt(1)));
-        if (!checkInputRange())
+        if (!checkInputRange()) {
             throw new InvalidInputException(location + " is not a valid move");
+        }
     }
 
 
@@ -72,7 +73,7 @@ public class Cell {
         return new Cell((char) (xAxis - 1), yAxis);
     }
 
-    public boolean checkInputRange() {
+    private boolean checkInputRange() {
         return Arrays.stream(xAxisRange).anyMatch(x -> x.equals(xAxis))
                 && Arrays.stream(yAxisRange).anyMatch(y -> y == yAxis);
     }
