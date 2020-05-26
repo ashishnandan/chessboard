@@ -37,11 +37,12 @@ This project requires java 8 or above installed on your machine. It is a simple 
 
 ### How to Run
 Please run below comman from command prompt/terminal which should be at the base of the project directory.
-For e.g. if the project is copied in /Users/ashish/workspace, you should run below command from /Users/ashish/workspace/chessboard
+For e.g. if the project is copied in /Users/ashish/workspace, you should run below command from /Users/ashish/workspace/chessboard<br />
+Main Program : App.java
 ```shell script
 ./gradlew run -q --console=plain
-Input : <enter a valid input>
-Output : <All the possible moves of the chess piece you entered>
+Input - <enter a valid input>
+Output - <All the possible moves of the chess piece you entered>
 ```
 
 ### How to Test :

@@ -8,4 +8,6 @@ public class Constants {
     public static final String OPENING_BRACE = "[";
     public static final String CLOSING_BRACE = "]";
     public static final String EMPTY_STRING = "";
+    public static final String INPUT = "Input - ";
+    public static final String OUTPUT = "Output - ";
 }
