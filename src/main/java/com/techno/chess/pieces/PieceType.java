@@ -31,9 +31,16 @@ public enum PieceType {
             }
             return (Piece) Class.forName(packageNameToAppend + type.pieceType)
                     .getConstructor(clzz).newInstance(new Object[]{constructorArgs});
-        } catch (InvocationTargetException | ClassNotFoundException | NoSuchMethodException
-                | IllegalAccessException | InstantiationException e) {
-            throw new InvalidInputException(e.getMessage());
+        } catch (InvocationTargetException e) {
+            throw new InvalidInputException(pieceType + " " + constructorArgs + " is not a valid move");
+        } catch (ClassNotFoundException e) {
+            throw new InvalidInputException("PieceType " + pieceType + " not valid");
+        } catch (NoSuchMethodException e) {
+            throw new InvalidInputException(e);
+        } catch (IllegalAccessException e) {
+            throw new InvalidInputException(e);
+        } catch (InstantiationException e) {
+            throw new InvalidInputException(e);
         }
     }
 }

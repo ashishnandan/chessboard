@@ -50,4 +50,14 @@ public class PieceTypeTest {
             assertEquals("PieceType bhwcwhjds not valid", e.getMessage());
         }
     }
+
+    @Test
+    public void getInstanceOf_invalidPieceMoves() {
+        try {
+            assertTrue(PieceType.getInstance("King", String.class, "Z1") instanceof Queen);
+            fail("Exception expected");
+        } catch (InvalidInputException e) {
+            assertEquals("King Z1 is not a valid move", e.getMessage());
+        }
+    }
 }
