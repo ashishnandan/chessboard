@@ -6,8 +6,7 @@ import com.techno.chess.exception.InvalidInputException;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static com.techno.chess.constants.Constants.X_AXIS_RANGE;
-import static com.techno.chess.constants.Constants.Y_AXIS_RANGE;
+import static com.techno.chess.constants.Constants.*;
 import static com.techno.chess.constants.ExceptionConstants.INVALID_MOVE_MESSAGE;
 import static java.text.MessageFormat.format;
 
@@ -29,7 +28,7 @@ public class Cell {
         this.location = s;
         xAxis = location.charAt(0);
         yAxis = Integer.parseInt(String.valueOf(location.charAt(1)));
-        if (location.length()!= 2 || !checkInputRange()) {
+        if (location.length()!= MAX_LENGTH || !checkInputRange()) {
             throw new InvalidInputException(format(INVALID_MOVE_MESSAGE, location));
         }
     }
