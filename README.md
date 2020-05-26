@@ -32,7 +32,7 @@ possible cells in which the chess piece can move.
 
 This project requires java 8 or above installed on your machine. It is a simple console app build using gradle-init task using type java-application.
 - Java 8
-- gradle 
+- gradle 4.7
 
 
 ### How to Run
@@ -48,3 +48,7 @@ Output : <All the possible moves of the chess piece you entered>
 ```shell script
 ./gradlew test
 ```
+
+###Assumption
+Assume that the board is empty. This means that the pawn cannot move 
+diagonally. 
