@@ -1,5 +1,6 @@
 package com.techno.chess;
 
+import com.techno.chess.constants.ExceptionConstants;
 import com.techno.chess.exception.InvalidInputException;
 
 import java.util.Arrays;
@@ -7,6 +8,8 @@ import java.util.Objects;
 
 import static com.techno.chess.constants.Constants.X_AXIS_RANGE;
 import static com.techno.chess.constants.Constants.Y_AXIS_RANGE;
+import static com.techno.chess.constants.ExceptionConstants.INVALID_MOVE_MESSAGE;
+import static java.text.MessageFormat.format;
 
 public class Cell {
 
@@ -27,7 +30,7 @@ public class Cell {
         xAxis = location.charAt(0);
         yAxis = Integer.parseInt(String.valueOf(location.charAt(1)));
         if (location.length()!= 2 || !checkInputRange()) {
-            throw new InvalidInputException(location + " is not a valid move");
+            throw new InvalidInputException(format(INVALID_MOVE_MESSAGE, location));
         }
     }
 
