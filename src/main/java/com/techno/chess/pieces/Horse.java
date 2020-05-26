@@ -34,4 +34,8 @@ public class Horse implements Piece, HorseMovementRule {
     public List<HorseMovementDirection> getMovementRules() {
         return Arrays.asList(HorseMovementDirection.values());
     }
+
+    public Cell getCell() {
+        return start;
+    }
 }

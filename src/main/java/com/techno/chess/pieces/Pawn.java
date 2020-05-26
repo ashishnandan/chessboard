@@ -7,12 +7,14 @@ import com.techno.chess.move.MovementRule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import static com.techno.chess.move.MovementDirection.*;
+import static com.techno.chess.move.MovementDirection.DIAGONAL_TOP_RIGHT;
+import static com.techno.chess.move.MovementDirection.VERTICAL_TOP;
 
 /*
-Probable move also includes the diagonal move in order to eliminate the opposing piece
+Probable move does not include the diagonal move in order to eliminate the opposing piece as piece wont have that information
  */
 public class Pawn implements Piece, MovementRule {
 
@@ -36,6 +38,21 @@ public class Pawn implements Piece, MovementRule {
 
     @Override
     public List<MovementDirection> getMovementRules() {
-        return Arrays.asList(VERTICAL_TOP, DIAGONAL_TOP_RIGHT, DIAGONAL_TOP_LEFT);
+        return Collections.singletonList(VERTICAL_TOP);
+    }
+
+    public Cell getCell() {
+        return start;
+    }
+
+    public List<Cell> addDiagonalSlotsOfPawn(List<Piece> pieces) {
+        List<Cell> availableSlots = new ArrayList<>();
+        for (MovementDirection direction : Arrays.asList(DIAGONAL_TOP_RIGHT, MovementDirection.DIAGONAL_TOP_LEFT)) {
+            Cell newCell = direction.move(start);
+            if (newCell.getLocation() != null && pieces.stream().anyMatch(piece1 -> piece1.getCell().equals(newCell))) {
+                availableSlots.add(newCell);
+            }
+        }
+        return availableSlots;
     }
 }

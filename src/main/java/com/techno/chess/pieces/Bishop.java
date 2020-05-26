@@ -38,4 +38,8 @@ public class Bishop implements Piece, MovementRule {
     public List<MovementDirection> getMovementRules() {
         return Arrays.asList(DIAGONAL_TOP_RIGHT, DIAGONAL_BOTTOM_RIGHT, DIAGONAL_BOTTOM_LEFT, DIAGONAL_TOP_LEFT);
     }
+
+    public Cell getCell() {
+        return start;
+    }
 }

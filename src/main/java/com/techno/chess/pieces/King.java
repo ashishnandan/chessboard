@@ -33,4 +33,8 @@ public class King implements Piece, MovementRule {
     public List<MovementDirection> getMovementRules() {
         return Arrays.asList(MovementDirection.values());
     }
+
+    public Cell getCell() {
+        return start;
+    }
 }

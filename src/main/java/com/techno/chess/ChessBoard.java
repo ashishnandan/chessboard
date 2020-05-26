@@ -1,9 +1,11 @@
 package com.techno.chess;
 
 import com.techno.chess.exception.InvalidInputException;
+import com.techno.chess.pieces.Pawn;
 import com.techno.chess.pieces.Piece;
 import com.techno.chess.pieces.PieceType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChessBoard {
@@ -16,12 +18,24 @@ public class ChessBoard {
         this.input = input;
     }
 
-    private String [] inputArr;
+    private String[] inputArr;
+
+    public final List<Piece> pieces = new ArrayList<>();
 
     public String getAvailableMoves() throws InvalidInputException {
         checkInput();
         Piece piece = PieceType.getInstance(extractPieceInfo(), String.class, extractMoveInfo());
+        pieces.add(piece);
         List<Cell> availableSlots = piece.getAvailableSlots();
+
+        // check if pawn is allowed to move diagonally
+        if (piece instanceof Pawn)
+        {
+            Pawn pawn = (Pawn) piece;
+            availableSlots.addAll(pawn.addDiagonalSlotsOfPawn(pieces));
+        }
+
+
         StringBuilder output = new StringBuilder();
         availableSlots.stream().map(cell -> cell.getLocation() + ", ").forEach(output::append);
         return output.length() == 0 ? output.toString() : output.substring(0, output.length() - 2);

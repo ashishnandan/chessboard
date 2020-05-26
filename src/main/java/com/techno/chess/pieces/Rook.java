@@ -38,4 +38,8 @@ public class Rook implements Piece, MovementRule {
     public List<MovementDirection> getMovementRules() {
         return Arrays.asList(VERTICAL_TOP, HORIZONTAL_RIGHT, VERTICAL_BOTTOM, HORIZONTAL_LEFT);
     }
+
+    public Cell getCell() {
+        return start;
+    }
 }

@@ -1,6 +1,7 @@
 package com.techno.chess;
 
 import com.techno.chess.exception.InvalidInputException;
+import com.techno.chess.pieces.Queen;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,12 +24,21 @@ public class ChessBoardTest {
         inputOutputMap.put("Queen H1", "H2, H3, H4, H5, H6, H7, H8, G1, F1, E1, D1, C1, B1, A1, G2, F3, E4, D5, C6, B7, A8");
         inputOutputMap.put("Bishop E3", "F4, G5, H6, F2, G1, D2, C1, D4, C5, B6, A7");
         inputOutputMap.put("Horse A6", "B8, C7, C5, B4");
-        inputOutputMap.put("Pawn A4", "A5, B5");
+        inputOutputMap.put("Pawn A4", "A5");
         inputOutputMap.put("Pawn E8", "");
 
         for (String input: inputOutputMap.keySet()) {
             assertEquals(inputOutputMap.get(input), new ChessBoard(input).getAvailableMoves());
         }
+    }
+
+    @Test
+    public void getAvailableSlots_PawnDaigonalMovement() throws InvalidInputException {
+        ChessBoard cb = new ChessBoard("Pawn D6");
+        Queen queen = new Queen("E7");
+        cb.pieces.add(queen);
+
+        assertEquals("D7, E7", cb.getAvailableMoves());
     }
 
     @Test(expected = InvalidInputException.class)

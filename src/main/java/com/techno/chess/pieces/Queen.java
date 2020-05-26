@@ -38,4 +38,8 @@ public class Queen implements Piece, MovementRule {
     public List<MovementDirection> getMovementRules() {
         return Arrays.asList(values());
     }
+
+    public Cell getCell() {
+        return start;
+    }
 }

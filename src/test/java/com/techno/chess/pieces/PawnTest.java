@@ -18,8 +18,6 @@ public class PawnTest {
         List<Cell> availableSlots = new Pawn("D5").getAvailableSlots();
         List<Cell> output = new ArrayList<>();
         output.add(new Cell("D6"));
-        output.add(new Cell("E6"));
-        output.add(new Cell("C6"));
 
         assertEquals(output, availableSlots);
 
