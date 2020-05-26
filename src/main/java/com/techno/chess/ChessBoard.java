@@ -16,27 +16,29 @@ public class ChessBoard {
         this.input = input;
     }
 
-    public String getAvailableMoves() throws
-            IllegalAccessException, InstantiationException, InvalidInputException, NoSuchMethodException {
+    private String [] inputArr;
+
+    public String getAvailableMoves() throws InvalidInputException {
         checkInput();
         Piece piece = PieceType.getInstance(extractPieceInfo(), String.class, extractMoveInfo());
         List<Cell> availableSlots = piece.getAvailableSlots();
         StringBuilder output = new StringBuilder();
         availableSlots.stream().map(cell -> cell.getLocation() + ", ").forEach(output::append);
-        return output.substring(0, output.length() - 2);
+        return output.length() == 0 ? output.toString() : output.substring(0, output.length() - 2);
     }
 
     private void checkInput() throws InvalidInputException {
-        if (input.split(REGEX).length != 2 || extractMoveInfo().length() != 2) {
+        inputArr = input.split(REGEX);
+        if (inputArr.length != 2 || extractMoveInfo().length() != 2) {
             throw new InvalidInputException(input + " is not a valid move");
         }
     }
 
     private String extractPieceInfo() {
-        return input.split(REGEX)[0];
+        return inputArr[0];
     }
 
     private String extractMoveInfo() {
-        return input.split(REGEX)[1];
+        return inputArr[1];
     }
 }

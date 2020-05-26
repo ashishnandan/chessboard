@@ -16,12 +16,11 @@ public enum PieceType {
     }
 
     public static boolean isValid(String s) {
-        PieceType[] pieceTypes = PieceType.values();
-        return Arrays.stream(pieceTypes).anyMatch(pieceType -> pieceType.toString().equalsIgnoreCase(s));
+        return Arrays.stream(PieceType.values()).anyMatch(pieceType -> pieceType.toString().equalsIgnoreCase(s));
     }
 
-    public static Piece getInstance(String pieceType, Class<String> clzz, String constructorArgs) throws
-            NoSuchMethodException, IllegalAccessException, InstantiationException, InvalidInputException {
+    public static Piece getInstance(String pieceType, Class<String> clzz, String constructorArgs)
+            throws InvalidInputException {
 
         PieceType type;
         try {
@@ -32,7 +31,8 @@ public enum PieceType {
             }
             return (Piece) Class.forName(packageNameToAppend + type.pieceType)
                     .getConstructor(clzz).newInstance(new Object[]{constructorArgs});
-        } catch (InvocationTargetException | ClassNotFoundException e) {
+        } catch (InvocationTargetException | ClassNotFoundException | NoSuchMethodException
+                | IllegalAccessException | InstantiationException e) {
             throw new InvalidInputException(e.getMessage());
         }
     }

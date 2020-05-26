@@ -32,8 +32,7 @@ public class PieceTypeTest {
     }
 
     @Test
-    public void getInstanceOf_validPieceNames() throws IllegalAccessException, InstantiationException,
-            NoSuchMethodException, InvalidInputException {
+    public void getInstanceOf_validPieceNames() throws InvalidInputException {
         assertTrue(PieceType.getInstance("queen", String.class, "H6") instanceof Queen);
         assertTrue(PieceType.getInstance("King", String.class, "D8") instanceof King);
         assertTrue(PieceType.getInstance("PAWN", String.class, "F8") instanceof Pawn);
@@ -47,7 +46,7 @@ public class PieceTypeTest {
         try {
             assertTrue(PieceType.getInstance("bhwcwhjds", String.class, "as") instanceof Queen);
             fail("Exception expected");
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvalidInputException e) {
+        } catch (InvalidInputException e) {
             assertEquals("PieceType bhwcwhjds not valid", e.getMessage());
         }
     }
