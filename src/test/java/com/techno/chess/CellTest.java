@@ -1,8 +1,11 @@
 package com.techno.chess;
 
+import com.techno.chess.constants.ExceptionConstants;
 import com.techno.chess.exception.InvalidInputException;
 import com.techno.chess.move.MovementDirection;
 import org.junit.Test;
+
+import java.text.MessageFormat;
 
 import static org.junit.Assert.*;
 
@@ -55,5 +58,15 @@ public class CellTest {
     public void moveLeft() throws InvalidInputException {
         assertEquals("C5", new Cell("D5").moveLeft().getLocation());
         assertNull(new Cell("A1").moveLeft().getLocation());
+    }
+
+    @Test
+    public void moveLeft_InvalidMove() {
+        try {
+            new Cell("D50").moveLeft().getLocation();
+            fail("Exception expected");
+        } catch (InvalidInputException e) {
+            assertEquals(MessageFormat.format(ExceptionConstants.INVALID_MOVE_MESSAGE, "D50"), e.getMessage());
+        }
     }
 }

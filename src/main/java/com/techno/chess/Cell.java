@@ -1,10 +1,12 @@
 package com.techno.chess;
 
 import com.techno.chess.exception.InvalidInputException;
-import com.techno.chess.move.MovementDirection;
 
 import java.util.Arrays;
 import java.util.Objects;
+
+import static com.techno.chess.constants.Constants.X_AXIS_RANGE;
+import static com.techno.chess.constants.Constants.Y_AXIS_RANGE;
 
 public class Cell {
 
@@ -12,10 +14,7 @@ public class Cell {
     private char xAxis;
     private int yAxis;
 
-    private final Character[] xAxisRange = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-    private final int[] yAxisRange = {1, 2, 3, 4, 5, 6, 7, 8};
-
-    public Cell(Character xAxis, int yAxis) {
+    private Cell(Character xAxis, int yAxis) {
         this.xAxis = xAxis;
         this.yAxis = yAxis;
         if (checkInputRange()) {
@@ -27,7 +26,7 @@ public class Cell {
         this.location = s;
         xAxis = location.charAt(0);
         yAxis = Integer.parseInt(String.valueOf(location.charAt(1)));
-        if (!checkInputRange()) {
+        if (location.length()!= 2 || !checkInputRange()) {
             throw new InvalidInputException(location + " is not a valid move");
         }
     }
@@ -74,8 +73,8 @@ public class Cell {
     }
 
     private boolean checkInputRange() {
-        return Arrays.stream(xAxisRange).anyMatch(x -> x.equals(xAxis))
-                && Arrays.stream(yAxisRange).anyMatch(y -> y == yAxis);
+        return Arrays.stream(X_AXIS_RANGE).anyMatch(x -> x.equals(xAxis))
+                && Arrays.stream(Y_AXIS_RANGE).anyMatch(y -> y == yAxis);
     }
 
     @Override
